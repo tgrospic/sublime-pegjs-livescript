@@ -1,0 +1,11 @@
+name: Comments
+scope: source.pegls
+settings:
+  shellVariables:
+  - name: TM_COMMENT_START
+    value: '//'
+  - name: TM_COMMENT_START_2
+    value: '/*'
+  - name: TM_COMMENT_END_2
+    value: '*/'
+uuid: d18b175d-c4e7-4f2a-9bb7-8b197b57530c

@@ -1,0 +1,98 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: PEG.js LiveScript
+scopeName: source.pegls
+uuid: a0686268-66df-4e3f-bdc7-a9140fee2a33
+comment: 'PEG.js with LiveScript'
+fileTypes: [pegls]
+foldingStartMarker: /\*\*|\{\s*$
+foldingStopMarker: \*\*/|^\s*\}
+
+patterns:
+- include: '#commentBlock'
+- include: '#commentLine'
+- include: '#docCommentLine'
+- include: '#literalDouble'
+- include: '#literalSingle'
+- include: '#charSet'
+- include: '#exprLabel'
+- include: '#rule'
+- include: '#ruleRef'
+- include: '#scriptblock'
+- include: '#pegOperator'
+
+repository:
+  rule:
+    match: ^([a-zA-Z$_][a-zA-Z$_0-9]*)[ \t]*("[^"]*"|'[^']*')?[ \t]*=?
+    captures:
+      '1':
+        name: entity.name.type.pegls
+      '2':
+        name: entity.name.tag.pegls
+  ruleRef:
+    match: '[a-zA-Z$_][a-zA-Z$_0-9]*'
+    name: entity.name.type.pegls
+  exprLabel:
+    match: '[a-zA-Z$_][a-zA-Z$_0-9]*:'
+    name: variable.parameter.pegls
+  pegOperator:
+    match: '[+*?&!$=/]'
+    name: keyword.operator.pegls
+  charSet:
+    begin: \[
+    end: \]
+    name: string.pegls
+  commentBlock:
+    begin: \/\*
+    captures:
+      '0':
+        name: punctuation.definition.comment.pegls
+    end: \*\/
+    name: comment.block.pegls
+  commentLine:
+    captures:
+      '1':
+        name: punctuation.definition.comment.pegls
+    match: (//).*$\n?
+    name: comment.line.double-slash.pegls
+  docCommentBlock:
+    begin: /\*\*(?!/)
+    captures:
+      '0':
+        name: punctuation.definition.comment.pegls
+    end: \*/
+    name: comment.block.documentation.pegls
+  literalDouble:
+    begin: '"'
+    beginCaptures:
+      '0':
+        name: punctuation.definition.string.begin.pegls
+    end: '"'
+    endCaptures:
+      '0':
+        name: punctuation.definition.string.end.pegls
+    name: string.quoted.double.pegls
+    patterns:
+    - match: \\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]|37[0-7]?|[4-7][0-7]?|.)
+      name: constant.character.escape.pegls
+  literalSingle:
+    begin: ''''
+    beginCaptures:
+      '0':
+        name: punctuation.definition.string.begin.pegls
+    end: ''''
+    endCaptures:
+      '0':
+        name: punctuation.definition.string.end.pegls
+    name: string.quoted.single.pegls
+    patterns:
+    - match: \\(x\h{2}|[0-2][0-7]{,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)
+      name: constant.character.escape.pegls
+  scriptblock:
+    begin: \{
+    end: \}
+    name: source.livescript.embedded.pegls
+    patterns:
+    - include: '#scriptblock'
+    - include: source.livescript
+    - include: source.ls
