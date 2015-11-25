@@ -9,6 +9,10 @@ You could also be interested in [PEG.js LiveScript plugin][peg-ls].
 
 ## Installation
 
+#### [Package Control][pegjs-ls-package]
+
+Install the package called `PEGjs LiveScript`
+
 #### Manual
 
 Clone the repository in your Sublime Text `Packages` directory.
@@ -17,6 +21,7 @@ Clone the repository in your Sublime Text `Packages` directory.
 
 [The MIT License (MIT)][license]
 
+[pegjs-ls-package]: https://packagecontrol.io/packages/PEGjs%20LiveScript
 [peg-js]: https://github.com/pegjs/pegjs
 [peg-js-sublime]: https://github.com/alexstrat/PEGjs.tmbundle
 [sublime]: http://www.sublimetext.com
